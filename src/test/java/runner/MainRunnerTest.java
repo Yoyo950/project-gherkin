@@ -1,18 +1,18 @@
 package runner;
 
 import application.api.ApiRequests;
-import application.hooks.Hook;
 import application.utils.ConfigReader;
 import application.utils.FileUtils;
 import application.utils.Unzipper;
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
+import org.junit.Test;
 import org.junit.runner.JUnitCore;
 
 import java.io.IOException;
 
-public class MainRunner {
-    public static void main(String[] args) throws IOException, InterruptedException {
+public class MainRunnerTest {
+
+    @Test
+    public void mainTest() throws IOException {
         //Création Objet et récupération du token, cette classe permet d'effectuer les requêtes API
         ApiRequests apiRequests = new ApiRequests();
         //Récupère fichier zip compressé
