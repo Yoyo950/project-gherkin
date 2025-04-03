@@ -5,16 +5,12 @@ pipeline {
             steps {
                 bat 'mvn test'
             }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
         }
-        stage('Publish Cucumber reports'){
-            steps {
-                cucumber fileIncludePattern: 'target/cucumber.json'
-            }
+    }
+    post {
+        always {
+            junit 'target/surefire-reports/*.xml'
+            cucumber fileIncludePattern: 'target/cucumber.json'
         }
     }
 }
