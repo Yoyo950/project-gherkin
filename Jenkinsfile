@@ -11,5 +11,10 @@ pipeline {
                 }
             }
         }
+        stage('Publish Cucumber reports'){
+            steps {
+                publishCucumberReports fileIncludePattern: 'target/cucumber.json'
+            }
+        }
     }
 }
