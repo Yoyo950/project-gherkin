@@ -9,8 +9,10 @@ pipeline {
     agent any
     stages {
         stage('Init') {
-            sh 'curl -H "Content-Type: application/json" -X GET -H "Authorization: Bearer '+ TOKEN +'" -o '+ PATH_ZIP +' "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys='+KEYS+'"'
-            sh 'unzip '+ PATH_ZIP + ' -d ' + PATH_EXPORT
+            steps {
+                sh 'curl -H "Content-Type: application/json" -X GET -H "Authorization: Bearer '+ TOKEN +'" -o '+ PATH_ZIP +' "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys='+KEYS+'"'
+                sh 'unzip '+ PATH_ZIP + ' -d ' + PATH_EXPORT
+            }
         }
         stage('Test') {
             steps {
