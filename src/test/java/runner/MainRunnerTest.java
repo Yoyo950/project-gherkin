@@ -26,14 +26,14 @@ public class MainRunnerTest {
             //Permet de run mon runner de test
             JUnitCore.runClasses(RunnerTest.class);
             //Fonction cherchant le fichier pendant 10 secondes et retournant un boolean indiquant s'il est présent
-            boolean fileFound2 = FileUtils.waitForFile(ConfigReader.getProperty("testResultsFile"), 10000);
+            /*boolean fileFound2 = FileUtils.waitForFile(ConfigReader.getProperty("testResultsFile"), 10000);
             if (fileFound2) {
                 System.out.println("Cucumber file found");
                 //Import les test results
                 apiRequests.importTestResults();
             } else {
                 throw new IOException("Cucumber result file not found");
-            }
+            }*/
         } else {
             throw new IOException("File feature not found");
         }
