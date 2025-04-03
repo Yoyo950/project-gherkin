@@ -4,7 +4,7 @@ import application.api.ApiRequests;
 import application.utils.ConfigReader;
 import application.utils.FileUtils;
 import application.utils.Unzipper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.JUnitCore;
 
 import java.io.IOException;
