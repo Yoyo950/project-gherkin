@@ -11,7 +11,8 @@ pipeline {
         stage('Init') {
             steps {
                 sh 'curl -H "Content-Type: application/json" -X GET -H "Authorization: Bearer '+ TOKEN +'" -o '+ PATH_ZIP +' "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys='+KEYS+'"'
-                sh 'tree'
+                sh 'pwd'
+                sh 'ls'
                 sh 'unzip '+ PATH_ZIP + ' -d ' + PATH_EXPORT
             }
         }
