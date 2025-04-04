@@ -1,6 +1,7 @@
 pipeline {
     environment {
-        TOKEN = bat(script: 'curl -H "Content-Type: application/json" -X POST --data "{ \"client_id\": \"6205FBA04AB4417D8B960E99E55FCC35\",\"client_secret\": \"5b9b5ac70c2a150b07417e1c18d30e8222aa5c744e842805ceef46fe33f7a210\" }"  https://xray.cloud.getxray.app/api/v2/authenticate',returnStdout: true)
+        JIRA_IDS = credentials('JIRA_IDS')
+        TOKEN = bat(script: 'curl -H "Content-Type: application/json" -X POST --data "{ \"client_id\": \"%JIRA_ID_USR%\",\"client_secret\": \"%JIRA_ID_PSW%\" }"  https://xray.cloud.getxray.app/api/v2/authenticate',returnStdout: true)
         PATH_CUCUMBER_FILE = 'target/cucumber.json'
         PATH_ZIP = "features.zip"
         PATH_EXPORT = "src/test/resources/features/distant"
