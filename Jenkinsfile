@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5hbnQiOiJiNmNhZGQwNS1lMzQxLTNmMTctYjU1Zi00OTM0MTI4MWQ4MmEiLCJhY2NvdW50SWQiOiI3MTIwMjA6MDMxYzNhY2QtNzIwZi00MDViLThmMzQtODRlZDBjZmQwNGU4IiwiaXNYZWEiOmZhbHNlLCJpYXQiOjE3NDM2ODYzNzgsImV4cCI6MTc0Mzc3Mjc3OCwiYXVkIjoiNjIwNUZCQTA0QUI0NDE3RDhCOTYwRTk5RTU1RkNDMzUiLCJpc3MiOiJjb20ueHBhbmRpdC5wbHVnaW5zLnhyYXkiLCJzdWIiOiI2MjA1RkJBMDRBQjQ0MTdEOEI5NjBFOTlFNTVGQ0MzNSJ9.0rRFesEhBpmz8K6IGDA125v-BWugTEMFFCGtsP-SYBI'
+        TOKEN = bat(script: 'curl -H "Content-Type: application/json" -X POST --data "{ \"client_id\": \"6205FBA04AB4417D8B960E99E55FCC35\",\"client_secret\": \"5b9b5ac70c2a150b07417e1c18d30e8222aa5c744e842805ceef46fe33f7a210\" }"  https://xray.cloud.getxray.app/api/v2/authenticate',returnStdout: true)
         PATH_CUCUMBER_FILE = 'target/cucumber.json'
         PATH_ZIP = "features.zip"
         PATH_EXPORT = "src/test/resources/features/distant"
