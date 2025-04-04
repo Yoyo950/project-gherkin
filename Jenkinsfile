@@ -4,15 +4,24 @@ pipeline {
         PATH_CUCUMBER_FILE = 'target/cucumber.json'
         PATH_ZIP = "features.zip"
         PATH_EXPORT = "src/test/resources/features/distant"
-        KEYS = 'POEI25-599;POEI25-600;POEI25-601;POEI25-602;POEI25-603;POEI25-604;POEI25-605'
     }
     agent any
+
+    parameters {
+        string(name: 'TEST_KEYS', defaultValue: '', description: 'The keys of the tests imported and executed')
+        string(name: 'ENV', defaultValue: 'dev', description: 'The environment used')
+    }
+
     stages {
         stage('Init') {
             steps {
-                sh 'curl -H "Content-Type: application/json" -X GET -H "Authorization: Bearer '+ TOKEN +'" -o '+ PATH_ZIP +' "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys='+KEYS+'"'
-                sh 'mkdir -p ' + PATH_EXPORT
-                sh 'unzip -o '+ PATH_ZIP + ' -d ' + PATH_EXPORT
+                script {
+                    bat """
+                        curl -H "Content-Type: application/json" -X GET -H "Authorization: Bearer %TOKEN%" -o %PATH_ZIP% "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys=%TEST_KEYS%"
+                        mkdir -p %PATH_EXPORT%
+                        unzip -o %PATH_ZIP% -d %PATH_EXPORT%
+                    """
+                }
             }
         }
         stage('Test') {
