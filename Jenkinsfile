@@ -1,15 +1,26 @@
 pipeline {
+    parameters {
+            string(name: 'TEST_KEYS', defaultValue: '', description: 'The keys of the tests imported and executed')
+            choice(name: 'ENV', choices: ['dev', 'staging', 'prod'], description: 'The environment used')
+            choice(name: 'BROWSER', defaultValue: ['chrome', 'edge', 'firefox'], description: 'The browser used for the tests')
+            booleanParam(name: 'IS_HEADLESS', defaultValue: false, description: 'Define if we run in headless')
+    }
+
     environment {
         TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5hbnQiOiJiNmNhZGQwNS1lMzQxLTNmMTctYjU1Zi00OTM0MTI4MWQ4MmEiLCJhY2NvdW50SWQiOiI3MTIwMjA6MDMxYzNhY2QtNzIwZi00MDViLThmMzQtODRlZDBjZmQwNGU4IiwiaXNYZWEiOmZhbHNlLCJpYXQiOjE3NDM3NTg2MDQsImV4cCI6MTc0Mzg0NTAwNCwiYXVkIjoiNjIwNUZCQTA0QUI0NDE3RDhCOTYwRTk5RTU1RkNDMzUiLCJpc3MiOiJjb20ueHBhbmRpdC5wbHVnaW5zLnhyYXkiLCJzdWIiOiI2MjA1RkJBMDRBQjQ0MTdEOEI5NjBFOTlFNTVGQ0MzNSJ9.TsaE29tEG8hzYb6SA9__-Qibr-wq79DZzDKklT7OgNE'
         PATH_CUCUMBER_FILE = 'target/cucumber.json'
         PATH_ZIP = "features.zip"
         PATH_EXPORT = "src/test/resources/features/distant"
+        BRWSR = BROWSER
+        HL = IS_HEADLESS
     }
     agent any
 
     parameters {
         string(name: 'TEST_KEYS', defaultValue: '', description: 'The keys of the tests imported and executed')
-        string(name: 'ENV', defaultValue: 'dev', description: 'The environment used')
+        choice(name: 'ENV', choices: ['dev', 'staging', 'prod'], description: 'The environment used')
+        choice(name: 'BROWSER', defaultValue: ['chrome', 'edge', 'firefox'], description: 'The browser used for the tests')
+        booleanParam(name: 'IS_HEADLESS', defaultValue: false, description: 'Define if we run in headless')
     }
 
     stages {
