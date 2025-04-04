@@ -2,7 +2,7 @@ pipeline {
     environment {
         JIRA_ID = credentials('JIRA_ID')
         JIRA_SECRET = credentials('JIRA_SECRET')
-        TOKEN = sh 'curl -H "Content-Type: application/json" -X POST --data "{ \"client_id\": \"${JIRA_ID}\",\"client_secret\": \"${JIRA_SECRET}\" }"  https://xray.cloud.getxray.app/api/v2/authenticate'
+        TOKEN = sh 'curl -H "Content-Type: application/json" -X POST --data "{ "client_id": "${JIRA_ID}","client_secret": "${JIRA_SECRET}" }"  https://xray.cloud.getxray.app/api/v2/authenticate'
         PATH_CUCUMBER_FILE = 'target/cucumber.json'
         PATH_ZIP = "features.zip"
         PATH_EXPORT = "src/test/resources/features/distant"
