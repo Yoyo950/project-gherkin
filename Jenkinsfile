@@ -2,7 +2,7 @@ pipeline {
     parameters {
             string(name: 'TEST_KEYS', defaultValue: '', description: 'The keys of the tests imported and executed')
             choice(name: 'ENV', choices: ['dev', 'staging', 'prod'], description: 'The environment used')
-            choice(name: 'BROWSER', defaultValue: ['chrome', 'edge', 'firefox'], description: 'The browser used for the tests')
+            choice(name: 'BROWSER', choices: ['chrome', 'edge', 'firefox'], description: 'The browser used for the tests')
             booleanParam(name: 'IS_HEADLESS', defaultValue: false, description: 'Define if we run in headless')
     }
 
@@ -11,17 +11,10 @@ pipeline {
         PATH_CUCUMBER_FILE = 'target/cucumber.json'
         PATH_ZIP = "features.zip"
         PATH_EXPORT = "src/test/resources/features/distant"
-        BRWSR = BROWSER
-        HL = IS_HEADLESS
+        BRWSR = '%BROWSER%'
+        HL = '%IS_HEADLESS%'
     }
     agent any
-
-    parameters {
-        string(name: 'TEST_KEYS', defaultValue: '', description: 'The keys of the tests imported and executed')
-        choice(name: 'ENV', choices: ['dev', 'staging', 'prod'], description: 'The environment used')
-        choice(name: 'BROWSER', defaultValue: ['chrome', 'edge', 'firefox'], description: 'The browser used for the tests')
-        booleanParam(name: 'IS_HEADLESS', defaultValue: false, description: 'Define if we run in headless')
-    }
 
     stages {
         stage('Init') {
